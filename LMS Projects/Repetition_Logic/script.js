@@ -1,4 +1,3 @@
-// Output helper
 function log(message) {
   document.getElementById("output").innerHTML += message + "<br>";
 }
@@ -45,7 +44,7 @@ function runDigitSum() {
   let num = N;
 
   if (num === 0) {
-    sum = 0;  
+    sum = 0;
   } else {
     while (num > 0) {
       sum += num % 10;
@@ -65,7 +64,7 @@ function startGuessingGame() {
   clearOutput();
   document.getElementById("guessContainer").style.display = "block";
   attempts = 0;
-  secretNumber = Math.floor(Math.random() * 50) + 1; 
+  secretNumber = Math.floor(Math.random() * 50) + 1;
   log("🎲 Guess the secret number between 1 and 50.");
 }
 
@@ -84,7 +83,7 @@ function makeGuess() {
     log("Too high! Try again.");
   } else {
     log("🎉 Correct! You guessed in " + attempts + " attempts.");
-    document.getElementById("guessContainer").style.display = "none"; 
+    document.getElementById("guessContainer").style.display = "none";
   }
 
   document.getElementById("guessInput").value = "";
