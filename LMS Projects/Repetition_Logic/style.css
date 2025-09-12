@@ -1,0 +1,103 @@
+/* General page styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+  color: #333;
+}
+
+/* Heading */
+h2 {
+  color: #2e7d32;
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Container for input and buttons */
+.container {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Input box */
+input {
+  padding: 12px;
+  width: 80%;
+  max-width: 250px;
+  margin: 12px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76,175,80,0.4);
+}
+
+/* Buttons */
+button {
+  padding: 12px 18px;
+  margin: 6px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+button:hover {
+  background: #388E3C;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Output area */
+#output {
+  margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  text-align: left;
+  white-space: pre-wrap;
+  min-height: 120px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Guessing game input section */
+.guess-container {
+  margin-top: 15px;
+}
+
+.guess-container input {
+  width: 180px;
+  margin-right: 10px;
+}

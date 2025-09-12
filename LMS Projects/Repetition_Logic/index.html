@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loops Example</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <h2>For, While & Do-While Loop Example</h2>
+
+  <div class="container">
+    <input type="number" id="numberInput" placeholder="Enter a number N">
+    <br>
+    <button onclick="runPrimes()">Show Prime Numbers (For Loop)</button>
+    <button onclick="runDigitSum()">Sum of Digits (While Loop)</button>
+    <button onclick="startGuessingGame()">Start Guessing Game (Do-While Loop)</button>
+  </div>
+
+  <div class="guess-container" id="guessContainer" style="display:none;">
+    <input type="number" id="guessInput" placeholder="Enter your guess">
+    <button onclick="makeGuess()">Submit Guess</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
