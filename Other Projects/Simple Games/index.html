@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Dice Game - Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen">
+
+    <div class="bg-gray-800 p-8 rounded-3xl shadow-2xl w-full max-w-3xl text-center">
+        <h1 class="text-3xl font-bold mb-6">🎲 Random Dice Game</h1>
+
+        <h2 class="text-xl font-semibold mb-2">YOU</h2>
+        <div id="player-dice-container" class="flex justify-center gap-4 mb-4">
+            <img src="/assets/images/dice-six-faces-one.svg" class="dice" data-value="1">
+            <img src="/assets/images/dice-six-faces-two.svg" class="dice" data-value="2">
+            <img src="/assets/images/dice-six-faces-three.svg" class="dice" data-value="3">
+            <img src="/assets/images/dice-six-faces-four.svg" class="dice" data-value="4">
+            <img src="/assets/images/dice-six-faces-five.svg" class="dice" data-value="5">
+            <img src="/assets/images/dice-six-faces-six.svg" class="dice" data-value="6">
+        </div>
+        <p id="playerScore" class="mb-6 text-lg font-medium font-extrabold">Score: 0</p>
+
+        <h2 class="text-xl font-semibold mb-2">Computer</h2>
+        <div id="computer-dice-container" class="flex justify-center gap-4 mb-4">
+            <img src="/assets/images/dice-six-faces-one.svg" class="dice" data-value="1">
+            <img src="/assets/images/dice-six-faces-two.svg" class="dice" data-value="2">
+            <img src="/assets/images/dice-six-faces-three.svg" class="dice" data-value="3">
+            <img src="/assets/images/dice-six-faces-four.svg" class="dice" data-value="4">
+            <img src="/assets/images/dice-six-faces-five.svg" class="dice" data-value="5">
+            <img src="/assets/images/dice-six-faces-six.svg" class="dice" data-value="6">
+        </div>
+        <p id="computerScore" class="mb-6 text-lg font-medium">Score: 0</p>
+
+        <div class="flex justify-center gap-4 mb-4">
+            <button id="rollBtn"
+                class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl text-lg font-bold transition-all">Roll
+                Dice</button>
+            <button id="endBtn"
+                class="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-xl text-lg font-bold transition-all">End
+                Game</button>
+        </div>
+
+        <p id="roundResult" class="text-xl font-semibold mb-2"></p>
+        <p id="finalResult" class="text-2xl font-bold text-yellow-400"></p>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
