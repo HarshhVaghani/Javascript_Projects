@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Links</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #222;
+        }
+
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .project-links a:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Projects</h1>
+        <div class="project-links">
+            <a href="/LMS Projects/index.html" aria-label="View LMS Projects">LMS Projects</a>
+            <a href="/Other Projects/index.html" aria-label="Play Random Dice Game">Other Projects</a>
+        </div>
+    </div>
+</body>
+
+</html>

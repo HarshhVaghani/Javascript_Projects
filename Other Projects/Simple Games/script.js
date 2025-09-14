@@ -1,5 +1,6 @@
 let rollBtn = document.getElementById("rollBtn");
 let endBtn = document.getElementById("endBtn");
+let restartBtn = document.getElementById("restartBtn");
 let roundResult = document.getElementById("roundResult");
 let finalResult = document.getElementById("finalResult");
 let playerScoreEl = document.getElementById("playerScore");
@@ -56,4 +57,20 @@ endBtn.addEventListener("click", function () {
   } else {
     finalResult.innerText = `🤝 Final Result: It's a Draw! (${playerScore} - ${computerScore})`;
   }
+});
+
+restartBtn.addEventListener("click", function () {
+  playerScore = 0;
+  computerScore = 0;
+  gameEnded = false;
+
+  playerScoreEl.innerText = `Score: ${playerScore}`;
+  computerScoreEl.innerText = `Score: ${computerScore}`;
+  roundResult.innerText = "";
+  finalResult.innerText = "";
+
+  rollBtn.disabled = false;
+
+  playerDiceImages.forEach(img => img.classList.remove("active"));
+  computerDiceImages.forEach(img => img.classList.remove("active"));
 });
