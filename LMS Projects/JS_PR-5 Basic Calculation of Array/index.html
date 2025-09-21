@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Array Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+
+    <div class="bg-gray-800 text-white p-10 rounded-3xl w-[700px] shadow-2xl">
+        <h1 class="text-5xl font-bold text-center mb-8">🔢 Array Calculator</h1>
+
+        <p class="text-xl mb-3">Enter numbers separated by commas:</p>
+        <input id="arrayInput" type="text" placeholder="e.g. 5,10,15"
+            class="w-full p-5 mb-6 rounded-xl text-black text-xl focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <button onclick="findSum()"
+                class="bg-blue-500 hover:bg-blue-600 text-white py-4 px-6 rounded-xl text-2xl font-semibold transition">Find
+                Sum</button>
+            <button onclick="findAverage()"
+                class="bg-green-500 hover:bg-green-600 text-white py-4 px-6 rounded-xl text-2xl font-semibold transition">Find
+                Average</button>
+            <button onclick="findMax()"
+                class="bg-purple-500 hover:bg-purple-600 text-white py-4 px-6 rounded-xl text-2xl font-semibold transition">Find
+                Max</button>
+            <button onclick="findMin()"
+                class="bg-red-500 hover:bg-red-600 text-white py-4 px-6 rounded-xl text-2xl font-semibold transition">Find
+                Min</button>
+        </div>
+
+        <div id="result" class="bg-gray-700 p-6 rounded-xl text-center text-3xl font-semibold">
+            Result will be shown here
+        </div>
+    </div>
+
+</body>
+
+</html>
