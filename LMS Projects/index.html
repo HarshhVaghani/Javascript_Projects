@@ -14,50 +14,77 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background: linear-gradient(135deg, #f0f2f5, #d9e2ec);
             color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            transition: background 0.3s;
         }
 
         .container {
-            background-color: #fff;
-            padding: 2.5rem 3rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
             text-align: center;
             width: 100%;
             max-width: 500px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            color: #222;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1c1c1e;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.5px;
         }
 
         .project-links {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.25rem;
         }
 
         .project-links a {
             display: block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.85rem 1.5rem;
+            border-radius: 10px;
             text-decoration: none;
-            background-color: #28a745;
+            background: linear-gradient(90deg, #4CAF50, #28a745);
             color: #fff;
-            font-weight: 500;
-            transition: background-color 0.3s, transform 0.2s;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
         }
 
         .project-links a:hover {
-            background-color: #218838;
-            transform: translateY(-2px);
+            background: linear-gradient(90deg, #218838, #1e7e34);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .project-links a {
+                font-size: 0.95rem;
+                padding: 0.7rem 1.2rem;
+            }
         }
     </style>
 </head>
@@ -66,10 +93,10 @@
     <div class="container">
         <h1>LMS Projects</h1>
         <div class="project-links">
-            <a href="/JS_PR-1 Basic_Calculation/index.html" aria-label="Basic Calculation Project">Basic Calculation</a>
-            <a href="/JS_PR-2 Conditional Statement/index.html" aria-label="Conditional Statement Project">Conditional Statement</a>
-            <a href="/JS_PR-3 Repetition_Logic/index.html" aria-label="Repetition Logic Project">Repetition Logic</a>
-            <a href="/JS_PR-5 Basic Calculation of Array/index.html" aria-label="Basic Calculation Of Array">Basic Calculation Of Array</a>
+            <a href="/LMS Projects/JS_PR-1 Basic_Calculation/index.html">Basic Calculation</a>
+            <a href="/LMS Projects/JS_PR-2 Conditional Statement/index.html">Conditional Statement</a>
+            <a href="/LMS Projects/JS_PR-3 Repetition_Logic/index.html">Repetition Logic</a>
+            <a href="/LMS Projects/JS_PR-5 Basic Calculation of Array/index.html">Basic Array Calculation</a>
         </div>
     </div>
 </body>
