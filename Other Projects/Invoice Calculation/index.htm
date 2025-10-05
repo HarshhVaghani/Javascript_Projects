@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoice Generator</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gray-200">
+
+  <div class="max-w-5xl  bg-blue-200 w-full  p-6 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center mb-6 text-blue-600">Invoice Generator</h1>
+
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-4">Add Item</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <input type="text" id="itemName" placeholder="Item Name" class="border rounded px-3 py-2 w-full" />
+        <input type="number" id="itemQty" placeholder="Quantity" min="1" class="border rounded px-3 py-2 w-full" />
+        <input type="number" id="itemPrice" placeholder="Unit Price (₹)" min="0" class="border rounded px-3 py-2 w-full" />
+        <input type="number" id="itemDiscount" placeholder="Discount (%)" min="0" max="100" class="border rounded px-3 py-2 w-full" />
+        <button onclick="addItem()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Item</button>
+      </div>
+    </div>
+
+    <!-- Table Heading -->
+    <div>
+      <h2 class="text-xl font-semibold mb-4">Invoice</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full table-auto border border-gray-300 text-center">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Item No.</th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Item</th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Quantity</th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Price per Kg(₹)</th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Discount (%)</th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Total (₹)</th>
+            </tr>
+              <tr>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">441   </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Sunflower Oil (15KG)     </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">3    </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">2500   </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">0 </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">7,500    </th>
+            </tr>
+              <tr>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">442    </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Basmati Rice(1 KG)     </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">6   </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">2600    </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">0 </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">15,600   </th>
+            </tr>
+              <tr>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">443    </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">Kaju (1 KG)    </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">15   </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">700   </th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">0</th>
+              <th class="border  border-slate-400 text-slate-900 bg-slate-200px-4 py-2">10,500</th>
+            </tr>
+          </thead>
+          <tbody id="invoicebody" class="bg-white"></tbody>
+        </table>
+      </div>
+
+      <!-- Billing Fields  -->
+      <div class="mt-6 text-right space-y-2">
+        <div class="mt-6 text-right space-y-2">
+        <p class="text-gray-700">Subtotal: ₹<span id="subtotal">26,100</span></p>
+        <p class="text-gray-700">Total Discount: ₹<span id="totalDiscount">100</span></p>
+        <p class="text-gray-700">Tax (10%): ₹<span id="tax">2610</span></p>
+        <p class="text-xl font-bold">Grand Total: ₹<span id="grandTotal">23,490</span></p>
+
+        <div class="mt-4 space-x-2">
+         <button onclick="resetInvoice()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+      Reset
+        </button>
+        <button onclick="downloadInvoice()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+      Download Invoice
+        </button>
+  </div>
+</div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

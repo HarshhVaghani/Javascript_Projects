@@ -1,0 +1,14 @@
+/* 
+   This file is optional since we're using Tailwind CSS
+   You can add custom styles here if needed
+*/
+
+/* Example: Custom animation for the countdown */
+#display {
+    transition: all 0.3s ease;
+}
+
+/* Example: Custom hover effect */
+button:active {
+    transform: scale(0.95);
+}
