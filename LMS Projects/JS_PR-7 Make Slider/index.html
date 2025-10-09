@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual Slider | Tailwind + JS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900 flex items-center justify-center min-h-screen">
+
+    <div class="relative w-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl">
+      <!-- Slides -->
+      <div class="relative">
+        <div class="slide opacity-100 transition-opacity duration-700 ease-in-out">
+          <img src="https://picsum.photos/id/1018/1000/500" class="w-full object-cover" alt="Slide 1">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8 text-white">
+            <h2 class="text-2xl font-bold">Explore the Unseen</h2>
+            <p class="text-sm opacity-90">Adventure awaits in every corner of the world.</p>
+          </div>
+        </div>
+
+        <div class="slide opacity-0 absolute inset-0 transition-opacity duration-700 ease-in-out">
+          <img src="https://picsum.photos/id/1025/1000/500" class="w-full object-cover" alt="Slide 2">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8 text-white">
+            <h2 class="text-2xl font-bold">Moments that Matter</h2>
+            <p class="text-sm opacity-90">Capture life’s beauty in every frame.</p>
+          </div>
+        </div>
+
+        <div class="slide opacity-0 absolute inset-0 transition-opacity duration-700 ease-in-out">
+          <img src="https://picsum.photos/id/1039/1000/500" class="w-full object-cover" alt="Slide 3">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8 text-white">
+            <h2 class="text-2xl font-bold">Nature’s Symphony</h2>
+            <p class="text-sm opacity-90">Feel the calmness in every breeze and wave.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <button id="prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition">
+        &#10094;
+      </button>
+      <button id="next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition">
+        &#10095;
+      </button>
+
+      <!-- Dots -->
+      <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex space-x-3">
+        <span class="dot w-3 h-3 bg-white/50 rounded-full cursor-pointer"></span>
+        <span class="dot w-3 h-3 bg-white/50 rounded-full cursor-pointer"></span>
+        <span class="dot w-3 h-3 bg-white/50 rounded-full cursor-pointer"></span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+
+  </body>
+</html>
