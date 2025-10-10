@@ -1,0 +1,102 @@
+<!-- advanced_family_diwali.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diwali Wishes - Family Special</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes floatLanterns { from { transform: translateY(100vh); opacity:0; } to { transform: translateY(-10vh); opacity:1; } }
+    .lantern { position: fixed; bottom: -50px; animation: floatLanterns 8s linear infinite; opacity: 0.8; }
+    .glow-card { box-shadow: 0 0 30px rgba(255, 170, 0, 0.7), 0 0 60px rgba(255, 94, 0, 0.5); animation: cardGlow 3s ease-in-out infinite alternate; }
+    @keyframes cardGlow { from { box-shadow: 0 0 20px rgba(255, 170, 0, 0.5); } to { box-shadow: 0 0 40px rgba(255, 94, 0, 0.9); } }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-purple-900 via-orange-800 to-yellow-700 min-h-screen flex items-center justify-center relative overflow-hidden">
+<audio id="bgMusicFamily" src="/assets/music/indian-hindi-song-diwali-music-342142.mp3" loop></audio>
+<button id="musicToggleFamily" class="fixed top-4 right-4 bg-yellow-500 text-purple-900 px-4 py-2 rounded-full shadow-lg">Play Music</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<body class="bg-gradient-to-br from-purple-900 via-orange-800 to-yellow-700 min-h-screen flex items-center justify-center relative overflow-hidden">
+
+  <!-- Floating Lanterns -->
+  <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="lantern" style="left:10%; animation-delay:0s;">
+  <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="lantern" style="left:50%; animation-delay:2s;">
+  <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="lantern" style="left:80%; animation-delay:4s;">
+
+  <!-- Main Family Card -->
+  <div id="familyCard" class="relative glow-card text-center bg-white bg-opacity-20 backdrop-blur-lg p-10 rounded-3xl max-w-lg mx-4 border border-yellow-300">
+    <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="absolute -top-6 -left-6 w-12 animate-pulse">
+    <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="absolute -top-6 -right-6 w-12 animate-pulse">
+    <h1 class="text-4xl font-bold text-yellow-200 mb-4">🪔 Happy Diwali, Dear Family 🪔</h1>
+    <p class="text-yellow-100 text-lg leading-relaxed mb-6">Wishing our lovely family a Diwali filled with laughter, endless love, and glowing prosperity. Just like the diyas brighten the night, your presence lights up my world. Thank you for being my constant source of happiness. 💛</p>
+    <p class="text-yellow-300 italic mb-4">— With love, Harsh ❤️</p>
+    <button onclick="launchConfettiFamily()" class="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-purple-900 font-semibold rounded-full shadow-lg mb-4">Send Love 🎆</button>
+    <button onclick="downloadCard()" class="px-6 py-3 bg-white text-purple-900 font-semibold rounded-full shadow-lg">Download & Share 💌</button>
+  </div>
+
+  <script>
+    function launchConfettiFamily() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('firework');
+        confetti.style.top = Math.random() * window.innerHeight + 'px';
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.position = 'fixed';
+        confetti.style.width = '6px';
+        confetti.style.height = '6px';
+        confetti.style.borderRadius = '50%';
+        confetti.style.background = 'white';
+        confetti.style.animation = 'explode 1s linear forwards';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 1000);
+      }
+    }
+  </script>
+<script>
+// Music toggle
+const musicF = document.getElementById('bgMusicFamily');
+const musicToggleF = document.getElementById('musicToggleFamily');
+let playingF = false;
+musicToggleF.addEventListener('click', () => {
+  if (!playingF) { musicF.play(); musicToggleF.innerText = 'Pause Music'; }
+  else { musicF.pause(); musicToggleF.innerText = 'Play Music'; }
+  playingF = !playingF;
+});
+
+// Download card
+function downloadCard() {
+  html2canvas(document.getElementById('familyCard')).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'diwali_family_card.png';
+    link.href = canvas.toDataURL();
+    link.click();
+  });
+}
+
+// Floating petals
+for(let i=0;i<15;i++){
+  const petal=document.createElement('div');
+  petal.innerHTML='🌸';
+  petal.style.position='fixed';
+  petal.style.left=Math.random()*100+'%';
+  petal.style.top='-10%';
+  petal.style.fontSize='24px';
+  petal.style.animation=`fall ${5+Math.random()*5}s linear infinite`;
+  document.body.appendChild(petal);
+}
+
+window.addEventListener('load', () => {
+  musicF.play();
+  musicToggleFamily.innerText = 'Pause Music';
+  playingF = true;
+});
+
+
+// Petal animation
+const style=document.createElement('style');
+style.innerHTML=`@keyframes fall{ to { transform: translateY(120vh) rotate(360deg); opacity:0; } }`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>
