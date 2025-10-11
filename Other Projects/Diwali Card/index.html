@@ -1,4 +1,3 @@
-<!-- advanced_family_diwali.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,97 +5,217 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Diwali Wishes - Family Special</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
-    @keyframes floatLanterns { from { transform: translateY(100vh); opacity:0; } to { transform: translateY(-10vh); opacity:1; } }
-    .lantern { position: fixed; bottom: -50px; animation: floatLanterns 8s linear infinite; opacity: 0.8; }
-    .glow-card { box-shadow: 0 0 30px rgba(255, 170, 0, 0.7), 0 0 60px rgba(255, 94, 0, 0.5); animation: cardGlow 3s ease-in-out infinite alternate; }
-    @keyframes cardGlow { from { box-shadow: 0 0 20px rgba(255, 170, 0, 0.5); } to { box-shadow: 0 0 40px rgba(255, 94, 0, 0.9); } }
+    @keyframes floatLanterns { 
+      0% { transform: translateY(110vh) scale(0.8); opacity:0; } 
+      10% { opacity:0.9; }
+      90% { opacity:0.9; }
+      100% { transform: translateY(-20vh) scale(1.1); opacity:0; } 
+    }
+    @keyframes sparkle { 
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes diyaFlame { 
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.1) translateY(-2px); }
+    }
+    @keyframes cardGlow { 
+      0%, 100% { box-shadow: 0 0 40px rgba(255, 170, 0, 0.6), 0 0 80px rgba(255, 94, 0, 0.4); }
+      50% { box-shadow: 0 0 60px rgba(255, 170, 0, 0.9), 0 0 100px rgba(255, 94, 0, 0.7); }
+    }
+    @keyframes fall { 
+      to { transform: translateY(120vh) rotate(720deg); opacity:0; } 
+    }
+    @keyframes rangoli { 
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.05); }
+    }
+    @keyframes pulse { 
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+    
+    .lantern { 
+      position: fixed; 
+      bottom: -100px; 
+      width: 50px;
+      animation: floatLanterns 12s linear infinite; 
+      opacity: 0.85; 
+      filter: drop-shadow(0 0 10px rgba(255, 170, 0, 0.8));
+    }
+    
+    .glow-card { 
+      animation: cardGlow 3s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+    
+    .glow-card:hover {
+      transform: scale(1.02);
+    }
+    
+    .sparkle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    .diya-flame {
+      animation: diyaFlame 1.5s ease-in-out infinite;
+    }
+    
+    .rangoli-pattern {
+      animation: rangoli 10s linear infinite;
+    }
+    
+    .btn-hover {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-hover::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-hover:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .petal {
+      position: fixed;
+      font-size: 24px;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+    
+    @media (max-width: 640px) {
+      .lantern { width: 35px; }
+      .petal { font-size: 18px; }
+    }
+    
+    .firework {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    @keyframes explode {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-900 via-orange-800 to-yellow-700 min-h-screen flex items-center justify-center relative overflow-hidden">
-<audio id="bgMusicFamily" src="/assets/music/indian-hindi-song-diwali-music-342142.mp3" loop></audio>
-<button id="musicToggleFamily" class="fixed top-4 right-4 bg-yellow-500 text-purple-900 px-4 py-2 rounded-full shadow-lg">Play Music</button>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<body class="bg-gradient-to-br from-purple-900 via-orange-800 to-yellow-700 min-h-screen flex items-center justify-center relative overflow-hidden">
+
+  <!-- Sparkles Background -->
+  <div id="sparkleContainer"></div>
 
   <!-- Floating Lanterns -->
-  <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="lantern" style="left:10%; animation-delay:0s;">
-  <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="lantern" style="left:50%; animation-delay:2s;">
-  <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="lantern" style="left:80%; animation-delay:4s;">
+  <div class="lantern" style="left:5%; animation-delay:0s;">🏮</div>
+  <div class="lantern" style="left:25%; animation-delay:3s;">🏮</div>
+  <div class="lantern" style="left:50%; animation-delay:1.5s;">🏮</div>
+  <div class="lantern" style="left:75%; animation-delay:4.5s;">🏮</div>
+  <div class="lantern" style="left:90%; animation-delay:6s;">🏮</div>
 
-  <!-- Main Family Card -->
-  <div id="familyCard" class="relative glow-card text-center bg-white bg-opacity-20 backdrop-blur-lg p-10 rounded-3xl max-w-lg mx-4 border border-yellow-300">
-    <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="absolute -top-6 -left-6 w-12 animate-pulse">
-    <img src="https://images.zoomin.com/webresources/blog/23/diwali-decor-ideas/paper-lantern.png" class="absolute -top-6 -right-6 w-12 animate-pulse">
-    <h1 class="text-4xl font-bold text-yellow-200 mb-4">🪔 Happy Diwali, Dear Family 🪔</h1>
-    <p class="text-yellow-100 text-lg leading-relaxed mb-6">Wishing our lovely family a Diwali filled with laughter, endless love, and glowing prosperity. Just like the diyas brighten the night, your presence lights up my world. Thank you for being my constant source of happiness. 💛</p>
-    <p class="text-yellow-300 italic mb-4">— With love, Harsh ❤️</p>
-    <button onclick="launchConfettiFamily()" class="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-purple-900 font-semibold rounded-full shadow-lg mb-4">Send Love 🎆</button>
-    <button onclick="downloadCard()" class="px-6 py-3 bg-white text-purple-900 font-semibold rounded-full shadow-lg">Download & Share 💌</button>
+  <!-- Music Toggle Button -->
+  <button id="musicToggle" class="fixed top-4 right-4 z-50 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-5 py-2.5 rounded-full shadow-2xl font-semibold btn-hover hover:from-yellow-500 hover:to-orange-600 flex items-center gap-2">
+    <span id="musicIcon">🔇</span>
+    <span id="musicText">Play Music</span>
+  </button>
+
+  <!-- Decorative Rangoli Corners -->
+  <div class="fixed top-0 left-0 w-32 h-32 opacity-30 rangoli-pattern">
+    <svg viewBox="0 0 100 100" class="w-full h-full">
+      <circle cx="50" cy="50" r="40" fill="none" stroke="gold" stroke-width="2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="orange" stroke-width="2"/>
+      <circle cx="50" cy="50" r="20" fill="none" stroke="red" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="fixed bottom-0 right-0 w-32 h-32 opacity-30 rangoli-pattern" style="animation-delay: 5s;">
+    <svg viewBox="0 0 100 100" class="w-full h-full">
+      <circle cx="50" cy="50" r="40" fill="none" stroke="gold" stroke-width="2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="orange" stroke-width="2"/>
+      <circle cx="50" cy="50" r="20" fill="none" stroke="red" stroke-width="2"/>
+    </svg>
   </div>
 
-  <script>
-    function launchConfettiFamily() {
-      for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('firework');
-        confetti.style.top = Math.random() * window.innerHeight + 'px';
-        confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.position = 'fixed';
-        confetti.style.width = '6px';
-        confetti.style.height = '6px';
-        confetti.style.borderRadius = '50%';
-        confetti.style.background = 'white';
-        confetti.style.animation = 'explode 1s linear forwards';
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 1000);
-      }
-    }
-  </script>
-<script>
-// Music toggle
-const musicF = document.getElementById('bgMusicFamily');
-const musicToggleF = document.getElementById('musicToggleFamily');
-let playingF = false;
-musicToggleF.addEventListener('click', () => {
-  if (!playingF) { musicF.play(); musicToggleF.innerText = 'Pause Music'; }
-  else { musicF.pause(); musicToggleF.innerText = 'Play Music'; }
-  playingF = !playingF;
-});
+  <!-- Main Family Card -->
+  <div class="relative z-10 w-full max-w-2xl mx-4 px-4 sm:px-6 lg:px-8">
+    <div id="familyCard" class="relative glow-card text-center bg-gradient-to-br from-white/25 to-white/10 backdrop-blur-xl p-6 sm:p-10 lg:p-12 rounded-3xl border-2 border-yellow-300/50 shadow-2xl">
+      
+      <!-- Corner Diyas -->
+      <div class="absolute -top-8 -left-8 text-5xl diya-flame">🪔</div>
+      <div class="absolute -top-8 -right-8 text-5xl diya-flame" style="animation-delay: 0.5s;">🪔</div>
+      <div class="absolute -bottom-8 -left-8 text-5xl diya-flame" style="animation-delay: 1s;">🪔</div>
+      <div class="absolute -bottom-8 -right-8 text-5xl diya-flame" style="animation-delay: 1.5s;">🪔</div>
+      
+      <!-- Header with animated decoration -->
+      <div class="mb-6">
+        <div class="flex justify-center items-center gap-3 mb-4">
+          <span class="text-4xl sm:text-5xl diya-flame">✨</span>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-yellow-200 drop-shadow-lg">
+            Happy Diwali
+          </h1>
+          <span class="text-4xl sm:text-5xl diya-flame" style="animation-delay: 0.75s;">✨</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-semibold text-yellow-300 mb-2">Dear Family</h2>
+        <div class="flex justify-center gap-2 text-2xl sm:text-3xl">
+          <span class="diya-flame">🪔</span>
+          <span class="diya-flame" style="animation-delay: 0.3s;">🪔</span>
+          <span class="diya-flame" style="animation-delay: 0.6s;">🪔</span>
+        </div>
+      </div>
+      
+      <!-- Message -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-yellow-200/30">
+        <p class="text-yellow-100 text-base sm:text-lg lg:text-xl leading-relaxed mb-4">
+          Wishing our lovely family a Diwali filled with laughter, endless love, and glowing prosperity. Just like the diyas brighten the night, your presence lights up my world. Thank you for being my constant source of happiness.
+        </p>
+        <div class="flex justify-center items-center gap-2 text-3xl sm:text-4xl mb-4">
+          <span>🎊</span>
+          <span class="text-yellow-200">💛</span>
+          <span>🎊</span>
+        </div>
+        <p class="text-yellow-300 text-lg sm:text-xl italic font-semibold">
+          — With love, Harsh ❤️
+        </p>
+      </div>
+      
+      <!-- Interactive Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <button onclick="launchFireworks()" class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold rounded-full shadow-2xl btn-hover text-base sm:text-lg transform hover:scale-105 transition-all">
+          🎆 Send Love & Fireworks
+        </button>
+        <button onclick="downloadCard()" class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white hover:bg-yellow-50 text-purple-900 font-bold rounded-full shadow-2xl btn-hover text-base sm:text-lg transform hover:scale-105 transition-all">
+          💌 Download & Share
+        </button>
+      </div>
+      
+      <!-- Blessing -->
+      <div class="mt-6 text-yellow-200 text-sm sm:text-base italic opacity-90">
+        "May the festival of lights illuminate your life with joy and prosperity"
+      </div>
+    </div>
+  </div>
 
-// Download card
-function downloadCard() {
-  html2canvas(document.getElementById('familyCard')).then(canvas => {
-    const link = document.createElement('a');
-    link.download = 'diwali_family_card.png';
-    link.href = canvas.toDataURL();
-    link.click();
-  });
-}
-
-// Floating petals
-for(let i=0;i<15;i++){
-  const petal=document.createElement('div');
-  petal.innerHTML='🌸';
-  petal.style.position='fixed';
-  petal.style.left=Math.random()*100+'%';
-  petal.style.top='-10%';
-  petal.style.fontSize='24px';
-  petal.style.animation=`fall ${5+Math.random()*5}s linear infinite`;
-  document.body.appendChild(petal);
-}
-
-window.addEventListener('load', () => {
-  musicF.play();
-  musicToggleFamily.innerText = 'Pause Music';
-  playingF = true;
-});
-
-
-// Petal animation
-const style=document.createElement('style');
-style.innerHTML=`@keyframes fall{ to { transform: translateY(120vh) rotate(360deg); opacity:0; } }`;
-document.head.appendChild(style);
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
