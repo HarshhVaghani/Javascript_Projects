@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management UI using Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .avatar-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Starts-->
+        <aside class="w-128 bg-slate-900 text-white flex-shrink-0 hidden lg:block">
+            <div class="p-4">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-graduation-cap fa-2xl"></i>
+                    </div>
+                    <span class="font-semibold text-xl">Student Management</span>
+                </div>
+
+                <div class="mb-6">
+                    <nav class="space-y-1">
+                        <a href="#"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-slate-800">
+                            <i class="fa-solid fa-house text-xl"></i>
+                            <span class="text-xl pl-2">Dashboard</span>
+                        </a>
+
+                        <a href="#"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-slate-800">
+                            <i class="fa-solid fa-person fa-xl"></i>
+                            <span class="text-xl pl-4">Students</span>
+                        </a>
+
+
+                        <nav class="space-y-1">
+                            <a href="#"
+                                class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-slate-800">
+                                <i class="fa-solid fa-clipboard-check fa-xl"></i>
+                                <span class="text-xl pl-3">Reports</span>
+                            </a>
+                            <a href="#"
+                                class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-slate-800">
+                                <i class="fa-solid fa-clipboard-user fa-xl"></i>
+                                <span class="text-xl pl-3">Attendance</span>
+                            </a>
+                        </nav>
+                    </nav>
+                </div>
+
+                <div class="mb-6">
+
+                </div>
+            </div>
+
+            <!-- Log-Out & Settings Options -->
+            <div class="absolute bottom-12 left-0 right-0 w-64 p-4">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-slate-800">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span class="text-xl pl-3">Log-Out</span>
+                </a>
+            </div>
+
+            <div class="absolute bottom-0 left-0 right-0 w-64 p-4">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-slate-800">
+                    <i class="fas fa-cog w-5"></i>
+                    <span class="text-xl pl-3">Settings</span>
+                </a>
+            </div>
+        </aside>
+        <!-- Sidebar Ends-->
+
+
+        <!-- Main Content Starts-->
+        <main class="flex-1 overflow-auto">
+            <!-- Header -->
+            <header class="bg-white border-b border-gray-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                        <i class="fas fa-home"></i>
+                        <span>/</span>
+                        <span>Students</span>
+                    </div>
+                    <div class="flex items-center gap-5">
+                        <button class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button class="relative text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-bell"></i>
+                            <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center gap-2 bg-cover">
+                            <img src="/assets/images/photo_2025-09-22_14-15-55.jpg" alt="User"
+                                class="w-8 h-8 rounded-full">
+                            <span class="text-sm font-medium">Harsh</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contacts Content -->
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 class="text-2xl font-semibold text-gray-900">Students</h1>
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Student</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="bg-white rounded-lg shadow-sm mb-4">
+                    <div class="p-4 flex items-center justify-between border-b border-gray-200">
+                        <div class="flex items-center gap-4">
+                            <button class="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
+                                <span>Last activity date</span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <button class="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
+                                <span>Created date</span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <button class="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
+                                <span>Advanced Filters</span>
+                                <i class="fas fa-filter text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" placeholder="Search Student"
+                                class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button class="text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Table Starts-->
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50 border-b border-gray-200">
+                                <tr>
+                                    <th class="px-6 py-3 text-left">
+                                        <input type="checkbox" class="rounded border-gray-300">
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                        Name <i class="fas fa-sort ml-1"></i>
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                        Email <i class="fas fa-sort ml-1"></i>
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                        Age <i class="fas fa-sort ml-1"></i>
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                        GR-ID <i class="fas fa-sort ml-1"></i>
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                        Gender <i class="fas fa-sort ml-1"></i>
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                        Course <i class="fas fa-sort ml-1"></i>
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                        Department <i class="fas fa-sort ml-1"></i>
+                                    </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                        Contact Number <i class="fas fa-sort ml-1"></i>
+                                    </th>
+                                    <th class="px-6 py-3"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-amber-100 text-amber-700">AS</div>
+                                            <span class="text-sm font-medium text-gray-900">Aarav Sharma </span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">aarav.sharma@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">20</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">8595</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Male</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BCA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Computer Science</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876543201</td>
+
+
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-orange-100 text-orange-700">VS</div>
+                                            <span class="text-sm font-medium text-gray-900">Nisha Verma</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">nisha.verma@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">22</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">1023</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Female</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BBA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Management</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876543210</td>
+                                    <button class="text-gray-400 hover:text-gray-600">
+                                        <td class="px-6 py-4">
+                                            <button class="text-gray-400 hover:text-gray-600">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                        </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-yellow-100 text-yellow-700">RK</div>
+                                            <span class="text-sm font-medium text-gray-900">RAhul Kumar</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">rahul.kumar@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">21</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">2045</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Male</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">B.Tech</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Mechanical</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876512340</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-lime-100 text-lime-700">AS</div>
+                                            <span class="text-sm font-medium text-gray-900">Ananya Singh</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">ananya.singh@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">19</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">3056</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Female</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BCA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Computer Science</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876523456</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-green-100 text-green-700">VP</div>
+                                            <span class="text-sm font-medium text-gray-900">Vivek Patel</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">vivek.patel@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">23</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">4078</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Male</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BBA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Finance</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876534567</td>
+
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-amber-100 text-amber-700">TM</div>
+                                            <span class="text-sm font-medium text-gray-900">Tanya Mishra</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">tanya.mishra@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">20</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">5099</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Female</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">B.Tech</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Electronics</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876545678</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-orange-100 text-orange-700">RS</div>
+                                            <span class="text-sm font-medium text-gray-900">Rohit Shah</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">rohit.shah@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">21</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">6101</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Male</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BCA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Computer Science</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876546789</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-blue-100 text-blue-700">IR</div>
+                                            <span class="text-sm font-medium text-gray-900">Ishita Regular</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">ishita.jain@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">22</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">7112</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Female</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BBA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Marketing</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876547890</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-blue-100 text-blue-700">SM</div>
+                                            <span class="text-sm font-medium text-gray-900">Sahil Mehta</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">sahil.mehta@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">23</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">8123</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Male</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">B.Tech</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Civil</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876548901</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-blue-100 text-blue-700">PR</div>
+                                            <span class="text-sm font-medium text-gray-900">Priya Rana</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">priya.rana@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">20</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9134</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Female</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BCA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Computer Science</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876550012</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-blue-100 text-blue-700">AK</div>
+                                            <span class="text-sm font-medium text-gray-900">Anil Kappor</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">anil.kapoor@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">24</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">10145</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Male</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BBA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">HR</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876551123</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-blue-100 text-blue-700">MP</div>
+                                            <span class="text-sm font-medium text-gray-900">Meera Patel</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">meera.patel@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">21</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">11156</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Female</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">B.Tech</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">IT</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876552234</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-blue-100 text-blue-700">RS</div>
+                                            <span class="text-sm font-medium text-gray-900">Rahul Saxena</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">rahul.saxena@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">22</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">12167</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Male</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BCA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Computer Science</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876553345</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4"><input type="checkbox" class="rounded border-gray-300"></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar-circle bg-blue-100 text-blue-700">SK</div>
+                                            <span class="text-sm font-medium text-gray-900">Simran Kaur</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">simran.kaur@gmail.com</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">20</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">13178</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Female</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">BBA</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">Finance</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">9876554456</td>
+                                    <td class="px-6 py-4">
+                                        <button class="text-gray-400 hover:text-gray-600">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Main Content Ends -->
+
+
+                    <!-- Pagination -->
+                    <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                        <div class="text-sm text-gray-600">
+                            Displaying <span class="font-medium">20</span> out of <span class="font-medium">500</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="px-3 py-1 rounded hover:bg-gray-100">
+                                <i class="fas fa-chevron-left text-sm"></i>
+                            </button>
+                            <button class="px-3 py-1 rounded bg-blue-600 text-white">1</button>
+                            <button class="px-3 py-1 rounded hover:bg-gray-100">2</button>
+                            <button class="px-3 py-1 rounded hover:bg-gray-100">3</button>
+                            <button class="px-3 py-1 rounded hover:bg-gray-100">4</button>
+                            <span class="px-2">...</span>
+                            <button class="px-3 py-1 rounded hover:bg-gray-100">20</button>
+                            <button class="px-3 py-1 rounded hover:bg-gray-100">
+                                <i class="fas fa-chevron-right text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
