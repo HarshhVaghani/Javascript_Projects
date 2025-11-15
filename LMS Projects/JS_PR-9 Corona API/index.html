@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corona Stats App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-5">
+
+    <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md">
+
+        <h1 class="text-3xl font-bold text-center mb-6">🦠 Corona Stats</h1>
+
+        <div class="flex gap-2 mb-6">
+            <input id="countryInput" type="text" placeholder="Enter country (e.g. India)"
+                class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+            <button onclick="getCoronaData()" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg">
+                Search
+            </button>
+        </div>
+
+        <div id="loader" class="hidden text-center my-4">
+            <div class="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto"></div>
+            <p class="mt-2 text-gray-300">Fetching data...</p>
+        </div>
+
+        <div id="result" class="text-center hidden">
+
+            <h2 class="text-2xl font-semibold" id="countryName"></h2>
+            <img id="flag" class="h-16 mx-auto mt-3 rounded shadow" />
+
+            <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
+
+                <div class="bg-gray-700 p-3 rounded-lg">
+                    <p class="font-semibold text-xl"> Total Cases</p>
+                    <p id="cases"></p>
+                </div>
+
+                <div class="bg-gray-700 p-3 rounded-lg">
+                    <p class="font-semibold text-xl"> Deaths</p>
+                    <p id="deaths"></p>
+                </div>
+
+                <div class="bg-gray-700 p-3 rounded-lg">
+                    <p class="font-semibold text-xl"> Recovered</p>
+                    <p id="recovered"></p>
+                </div>
+
+                <div class="bg-gray-700 p-3 rounded-lg">
+                    <p class="font-semibold text-xl"> Active</p>
+                    <p id="active"></p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function getCoronaData() {
+            const country = document.getElementById("countryInput").value.trim();
+
+            if (country === "") {
+                alert("Enter a country name!");
+                return;
+            }
+
+            document.getElementById("loader").classList.remove("hidden");
+            document.getElementById("result").classList.add("hidden");
+
+            try {
+                const url = `https://disease.sh/v3/covid-19/countries/${country}`;
+
+                const res = await fetch(url);
+                await wait(500);
+                const data = await res.json();
+
+                if (data.message === "Country not found or doesn't have any cases") {
+                    alert("Country not found!");
+                    document.getElementById("loader").classList.add("hidden");
+                    return;
+                }
+
+                document.getElementById("countryName").textContent = data.country;
+                document.getElementById("flag").src = data.countryInfo.flag;
+
+                document.getElementById("cases").textContent = data.cases.toLocaleString();
+                document.getElementById("deaths").textContent = data.deaths.toLocaleString();
+                document.getElementById("recovered").textContent = data.recovered.toLocaleString();
+                document.getElementById("active").textContent = data.active.toLocaleString();
+
+                document.getElementById("loader").classList.add("hidden");
+                document.getElementById("result").classList.remove("hidden");
+
+            } catch (error) {
+                alert("Error fetching data!");
+                console.error(error);
+                document.getElementById("loader").classList.add("hidden");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

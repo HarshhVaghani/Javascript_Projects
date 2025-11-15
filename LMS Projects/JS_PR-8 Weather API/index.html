@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-5">
+
+  <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md">
+
+    <h1 class="text-3xl font-bold text-center mb-6">🌦 Weather App</h1>
+
+    <div class="flex gap-2 mb-6">
+      <input id="cityInput" type="text" placeholder="Enter city (e.g. Mumbai)"
+        class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+      <button onclick="getWeather()" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg">
+        Search
+      </button>
+    </div>
+
+    <div id="loader" class="hidden text-center my-4">
+      <div class="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto"></div>
+      <p class="mt-2 text-gray-300">Fetching weather...</p>
+    </div>
+
+    <div id="result" class="text-center hidden">
+      <h2 class="text-2xl font-semibold" id="cityName"></h2>
+      <p class="text-gray-300 mt-1" id="weatherDesc"></p>
+
+      <div class="mt-5 text-5xl font-bold" id="temperature"></div>
+
+      <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
+        <div class="bg-gray-700 p-3 rounded-lg">
+          <p class="font-semibold">💨 Wind</p>
+          <p id="windSpeed"></p>
+        </div>
+
+        <div class="bg-gray-700 p-3 rounded-lg">
+          <p class="font-semibold">💧 Humidity</p>
+          <p id="humidity"></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function wait(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function getWeather() {
+      const city = document.getElementById("cityInput").value.trim();
+      if (city === "") {
+        alert("Enter a city name!");
+        return;
+      }
+
+      document.getElementById("loader").classList.remove("hidden");
+      document.getElementById("result").classList.add("hidden");
+
+      try {
+        const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${city}`;
+        const geoRes = await fetch(geoUrl);
+        const geoData = await geoRes.json();
+
+        if (!geoData.results || geoData.results.length === 0) {
+          alert("City not found!");
+          document.getElementById("loader").classList.add("hidden");
+          return;
+        }
+
+        const { latitude, longitude, name, country } = geoData.results[0];
+        await wait(1000);
+
+        const weatherUrl =
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}` +
+          `&longitude=${longitude}&current_weather=true`;
+
+        const weatherRes = await fetch(weatherUrl);
+        const weatherData = await weatherRes.json();
+
+        const weather = weatherData.current_weather;
+
+        document.getElementById("cityName").textContent = `${name}, ${country}`;
+        document.getElementById("temperature").textContent = weather.temperature + "°C";
+        document.getElementById("windSpeed").textContent = weather.windspeed + " km/h";
+        document.getElementById("humidity").textContent = (weather.relative_humidity || "40") + "%";
+
+        document.getElementById("weatherDesc").textContent =
+          weather.weathercode === 0 ? "Clear Sky" : "Cloudy";
+
+        document.getElementById("loader").classList.add("hidden");
+        document.getElementById("result").classList.remove("hidden");
+
+      } catch (err) {
+        alert("Error fetching weather!");
+        console.log(err);
+        document.getElementById("loader").classList.add("hidden");
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>

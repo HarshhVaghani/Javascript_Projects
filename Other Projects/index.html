@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Other Projects</title>
+
     <style>
         * {
             margin: 0;
@@ -14,44 +15,68 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background: linear-gradient(135deg, #eef2f7, #d9e2ec);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
-            background-color: #fff;
-            padding: 2.5rem 3rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            background: #ffffffcc;
+            padding: 2.5rem 2rem;
+            border-radius: 18px;
             width: 100%;
-            max-width: 400px;
+            max-width: 480px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+            text-align: center;
         }
 
         h1 {
-            margin-bottom: 2rem;
+            margin-bottom: 1.8rem;
             font-size: 2rem;
-            color: #222;
+            color: #1c1c1e;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
-        .project-link a {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            background-color: #ff5722;
-            color: #fff;
-            font-weight: 500;
-            transition: background-color 0.3s, transform 0.2s;
+        /* Grid layout 2 items per row */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
             margin-top: 10px;
         }
 
-        .project-link a:hover {
-            background-color: #e64a19;
+        .project-grid a {
+            display: block;
+            padding: 0.85rem 1.1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            background: #ff5722;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: 0.25s ease;
+        }
+
+        .project-grid a:hover {
+            background: #e64a19;
             transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+        }
+
+        @media (max-width: 500px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
         }
     </style>
 </head>
@@ -59,14 +84,17 @@
 <body>
     <div class="container">
         <h1>Other Projects</h1>
-        <div class="project-link">
-            <a href="/Other Projects/Simple Games/" aria-label="Simple Random Dice Game">Simple Random Dice Game</a><br>
-            <a href="/Other Projects/Invoice Calculation/index.htm" aria-label="Simple Random Dice Game">Invoice Calculation</a>
-            <a href="/Other Projects/Diwali Card/index.html" aria-label="Simple Random Dice Game">Diwali Card</a><br>
-            <a href="/Other Projects/Student Management/index.html" aria-label="Simple Random Dice Game">Student Management</a><br>
 
+        <div class="project-grid">
 
-            
+            <a href="/Other Projects/Simple Games/">Random Dice Game</a>
+
+            <a href="/Other Projects/Invoice Calculation/index.htm">Invoice Calculation</a>
+
+            <a href="/Other Projects/Diwali Card/index.html">Diwali Card</a>
+
+            <a href="/Other Projects/Student Management/index.html">Student Management</a>
+
         </div>
     </div>
 </body>
